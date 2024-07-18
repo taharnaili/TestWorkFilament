@@ -47,8 +47,7 @@ class User extends Authenticatable implements FilamentUser
 
      public function canAccessPanel(Panel $panel): bool
     {
-        //return true;
-        return str_ends_with($this->email, '@https://testworktime-77ecf9c2b6f8.herokuapp.com');
+        return true;
 
     }
 
