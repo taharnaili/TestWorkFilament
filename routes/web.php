@@ -10,9 +10,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('admin/login', 'AdminController@login');
-
-
 Route::get('admin/tasks/modal/{record}',[TaskController::class, 'editStatus'])->name('task.modal');
 
 Route::put('admin/tasks/{task}/update-status', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
