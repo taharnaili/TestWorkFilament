@@ -44,24 +44,12 @@ require __DIR__.'/../vendor/autoload.php';
 |
 */
 
-try {
-    $app = require_once __DIR__.'/../bootstrap/app.php';
-    if (!$app) {
-        throw new Exception('Failed to initialize the application.');
-    }
+$app = require_once __DIR__.'/../bootstrap/app.php';
 
-    $kernel = $app->make(Kernel::class);
-    if (!$kernel) {
-        throw new Exception('Failed to initialize the kernel.');
-    }
+$kernel = $app->make(Kernel::class);
 
-    $response = $kernel->handle(
-        $request = Request::capture()
-    );
+$response = $kernel->handle(
+    $request = Request::capture()
+)->send();
 
-    $response->send();
-    $kernel->terminate($request, $response);
-} catch (Exception $e) {
-    echo "Error: " . $e->getMessage();
-    die();
-}
+$kernel->terminate($request, $response);
